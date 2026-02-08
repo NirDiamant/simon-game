@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simon Game</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- Start Screen -->
+  <div id="start-screen" class="screen active">
+    <div class="screen-content">
+      <h1 class="game-title neon-text">SIMON</h1>
+      <p class="game-subtitle">Test Your Memory</p>
+
+      <div class="settings">
+        <div class="setting-row">
+          <label for="strict-toggle">Strict Mode</label>
+          <div class="toggle-switch">
+            <input type="checkbox" id="strict-toggle">
+            <span class="toggle-slider"></span>
+          </div>
+        </div>
+        <div class="setting-row">
+          <label for="sound-toggle">Sound</label>
+          <div class="toggle-switch">
+            <input type="checkbox" id="sound-toggle" checked>
+            <span class="toggle-slider"></span>
+          </div>
+        </div>
+        <div class="setting-row">
+          <label for="music-toggle">Ambient Music</label>
+          <div class="toggle-switch">
+            <input type="checkbox" id="music-toggle" checked>
+            <span class="toggle-slider"></span>
+          </div>
+        </div>
+      </div>
+
+      <button id="start-btn" class="btn btn-primary">START GAME</button>
+
+      <div class="high-score-display">
+        <span class="label">HIGH SCORE</span>
+        <span id="start-high-score" class="value">0</span>
+      </div>
+
+      <div class="controls-hint">
+        <p>Keyboard: <kbd>1</kbd><kbd>2</kbd><kbd>3</kbd><kbd>4</kbd> or <kbd>Q</kbd><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Game Screen -->
+  <div id="game-screen" class="screen">
+    <div class="game-hud">
+      <div class="hud-item">
+        <span class="label">ROUND</span>
+        <span id="hud-round" class="value">1</span>
+      </div>
+      <div class="hud-item">
+        <span class="label">SCORE</span>
+        <span id="hud-score" class="value">0</span>
+      </div>
+      <div class="hud-item">
+        <span class="label">BEST</span>
+        <span id="hud-high-score" class="value">0</span>
+      </div>
+      <div class="hud-item multiplier-display">
+        <span class="label">MULTI</span>
+        <span id="hud-multiplier" class="value">×1</span>
+      </div>
+    </div>
+
+    <div class="board-container">
+      <div id="simon-board" class="simon-board">
+        <button class="pad pad-green" data-pad="0" aria-label="Green pad">
+          <div class="pad-inner"></div>
+        </button>
+        <button class="pad pad-red" data-pad="1" aria-label="Red pad">
+          <div class="pad-inner"></div>
+        </button>
+        <button class="pad pad-yellow" data-pad="2" aria-label="Yellow pad">
+          <div class="pad-inner"></div>
+        </button>
+        <button class="pad pad-blue" data-pad="3" aria-label="Blue pad">
+          <div class="pad-inner"></div>
+        </button>
+
+        <div class="center-hub">
+          <div id="center-display" class="center-display">
+            <span id="center-text" class="center-text">SIMON</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="game-footer">
+      <div id="strict-indicator" class="strict-indicator hidden">STRICT</div>
+      <div id="game-status" class="game-status">Watch carefully...</div>
+    </div>
+  </div>
+
+  <!-- Game Over Screen -->
+  <div id="gameover-screen" class="screen">
+    <div class="screen-content">
+      <h2 class="gameover-title neon-text-red">GAME OVER</h2>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-label">FINAL SCORE</span>
+          <span id="final-score" class="stat-value">0</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">ROUND REACHED</span>
+          <span id="final-round" class="stat-value">0</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">HIGH SCORE</span>
+          <span id="final-high-score" class="stat-value">0</span>
+        </div>
+        <div class="stat-card" id="new-record-card" class="hidden">
+          <span class="stat-label new-record">NEW RECORD!</span>
+        </div>
+      </div>
+
+      <div class="gameover-actions">
+        <button id="restart-btn" class="btn btn-primary">PLAY AGAIN</button>
+        <button id="menu-btn" class="btn btn-secondary">MAIN MENU</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Countdown Overlay -->
+  <div id="countdown-overlay" class="countdown-overlay hidden">
+    <span id="countdown-number" class="countdown-number">3</span>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
